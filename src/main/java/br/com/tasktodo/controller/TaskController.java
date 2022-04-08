@@ -59,7 +59,7 @@ public class TaskController {
         	taskRepository.delete(taskEntity);
             return Void.TYPE;
         })
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro nao encontrado!"));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa nao encontrada!"));
 	}
 	
 	@GetMapping
