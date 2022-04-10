@@ -1,0 +1,152 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form 
+		class="shadow-lg p-3 mb-5 fs-5 rounded" 
+		xmlns:h="http://java.sun.com/jsf/html" 
+		xmlns:f="http://java.sun.com/jsf/core">
+	
+		<LEGEND class="text-center fs-2 rounded-pill bg-primary text-white">Editar Tarefa</LEGEND>
+	
+		<div class="container bg-light rounded" style="padding: 20px;">						
+			<div class="row justify-content-center p-1">
+				<div class="col-md-10 align-self-center">
+				
+					<div class="row p-3">
+						<div class="col-3 p-2">
+							<h:outputLabel value="Numero" />
+							<h:inputText 
+								value="#{taskManagedBean.taskEntity.id}"
+								disabled="true"
+								size="10" 
+								style="height: 35px;"/>
+						</div>
+						<div class="col-4 p-2">
+							<h:outputLabel value="Status" />
+							
+							<h:selectOneMenu disabled="true"
+								value="#{taskManagedBean.taskEntity.taskStattusEntity}"								
+								style="width:300px; height: 35px;"
+								converter="omnifaces.SelectItemsConverter">
+								 	
+								<f:selectItems
+									value="#{taskStattusManagedBean.taskStattusList()}" 
+									var="taskStattusEntity"
+							    	itemvalue="#{taskStattusEntity}" 
+							    	itemLabel="#{taskStattusEntity.taskStattusDescription}" />		
+							    		
+							</h:selectOneMenu>
+						</div>
+					</div>	
+				
+					<div class="row p-3">
+						<div class="col-12">
+							<h:outputLabel value="Titulo" />
+							<h:inputText 
+								value="#{taskManagedBean.taskEntity.title}"
+								size="75" 
+								style="height: 35px;"/>
+						</div>
+					</div>			
+					
+					<div class="row p-3">
+						<div class="col-12"> 			
+							<h:outputLabel value="Descricao" />
+							<h:inputTextarea 
+								value="#{taskManagedBean.taskEntity.description}"
+								cols="79" />				
+						</div>	
+					</div>
+			
+					<div class="row p-3">	
+					
+						<div class="col-4">							
+							<h:outputLabel value="Responsavel" />
+							
+							<h:selectOneMenu 
+								value="#{taskManagedBean.taskEntity.userEntity}"								
+								style="width:300px; height: 35px;"
+								converter="omnifaces.SelectItemsConverter">
+																	
+								<f:selectItem
+									itemLabel="-- Selecione --" 
+									itemValue="#{null}" 
+									noSelectionOption="true" />		
+								 	
+								<f:selectItems
+									value="#{userManagedBean.userList()}" 
+									var="userEntity"
+							    	itemvalue="#{userEntity}" 
+							    	itemLabel="#{userEntity.userName}" />		
+							    		
+							</h:selectOneMenu>
+						</div>
+								
+						<div class="col-4">	
+							<h:outputLabel value="Prioridade " />
+							
+							<h:selectOneMenu 
+								value="#{taskManagedBean.taskEntity.priorityEntity}" 
+								style="width:300px; height: 35px;"
+								converter="omnifaces.SelectItemsConverter">
+								
+								<f:selectItem
+									itemLabel="-- Selecione --" 
+									itemValue="#{null}" 
+									noSelectionOption="true" converter="priorityConverter"/>	
+									
+								<f:selectItems
+									value="#{priorityManagedBean.priorityList()}" 
+									var="priorityEntity"
+							    	itemvalue="#{priorityEntity}" 
+							    	itemLabel="#{priorityEntity.priorityDescription}" />	
+							    
+							</h:selectOneMenu>							
+						</div>		
+									
+						<div class="col-4">
+							<h:outputLabel value="Deadline" />
+			               	<h:inputText 
+			               		id = "inputDeadline"
+			               		value="#{taskManagedBean.taskEntity.deadline}"
+			               		style="width:300px; height: 35px;">			               		
+			                   	<f:converter
+									converterId="localDateFacesConverter"
+									for="inputDeadline" />
+			   	            </h:inputText>	
+						</div>					
+				
+					</div>		
+				</div>			
+			</div>	
+			
+		<hr />
+		
+			<div class="row d-flex justify-content-end">				
+				<div class="col-md-12 align-self-right">
+					<div class="col-12">
+						<div class="row flex-row-reverse">
+						
+							<div class="col-2 p-2">
+								<h:outputLabel />
+								<h:commandButton 
+									action="#{taskManagedBean.getTaskList()}"
+									class="btn btn-secondary btn-md rounded-pill" 
+									style="width: 100%;" 
+									value="voltar" />
+							</div>	
+														
+							<div class="col-2 p-2">
+								<h:outputLabel />
+								<h:commandButton
+									action="#{taskManagedBean.update(taskEntity)}"
+									class="btn btn-primary btn-md rounded-pill" 
+									style="width: 100%;" 									
+									value="atualizar" />
+							</div>							
+						</div>
+					</div>
+				</div>	
+			
+			</div>
+		</div>
+	</h:form>	
+</ui:composition>

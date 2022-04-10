@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.tasktodo.controller.TaskController;
 import br.com.tasktodo.entity.TaskEntity;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Transactional
 public class TaskServices {
 
