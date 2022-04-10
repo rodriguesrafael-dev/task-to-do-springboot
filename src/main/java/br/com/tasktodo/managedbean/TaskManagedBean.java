@@ -33,7 +33,7 @@ public class TaskManagedBean {
 	
 	public String getTaskCreate() {
 		this.taskEntity = new TaskEntity();
-		return "taskCreate?faces-redirect=true";
+		return "formTaskCreate?faces-redirect=true";
 	}
 	
 	public String getTaskList() {
